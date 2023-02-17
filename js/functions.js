@@ -73,23 +73,21 @@ getNumber('1.5');
 getNumber('2343200.006000');
 getNumber(null);
 */
-//* Luck try
+
+//* Successful attempt
 // const userString = '2343200.006000'; //? Maybe you want to use this "variable"
-/*
+
 function getNumber(string) {
-  console.log(`original string: ${string}\ntype input: ${typeof string}`);
   // if (!string) {
   if (string === undefined || string === null) {
-    return console.log(NaN);
+    return NaN;
   }
   const newString = string.toString().replace(/[\D]*/g, '');
   const number = Number(newString);
-  if (!newString) {
-  // if (newString.length === 0) {
-    return console.log(NaN);
+  if (newString.length === 0) {
+    return NaN;
   }
-  console.log(`type output: ${typeof number}`);
-  return console.log(`число ${number}\n===========`);
+  return number;
 }
 
 const arrForTest = [0, 1, -1, 1.5, -1.5, '', '123', '-123','sdf', '123sdf', 'sdf123sdf', 'sdf123', null];
@@ -102,4 +100,4 @@ function testGetNumber() {
 }
 
 testGetNumber();
-*/
+
