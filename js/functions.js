@@ -77,27 +77,48 @@ getNumber(null);
 //* Successful attempt
 // const userString = '2343200.006000'; //? Maybe you want to use this "variable"
 
-function getNumber(string) {
-  // if (!string) {
-  if (string === undefined || string === null) {
-    return NaN;
+// function getNumber(string) {
+//   if (string === undefined || string === null) {
+//     return NaN;
+//   }
+//   const newString = string.toString().replace(/[\D]*/g, '');
+//   const number = Number(newString);
+//   if (newString.length === 0) {
+//     return NaN;
+//   }
+//   return number;
+// }
+
+// const arrForTest = [0, 1, -1, 1.5, -1.5, '', '123', '-123','sdf', '123sdf', 'sdf123sdf', 'sdf123', null];
+
+// function testGetNumber() {
+//   for (let i = 0; i < arrForTest.length; i++) {
+//     const elem = arrForTest[i];
+//     getNumber(elem);
+//   }
+// }
+
+// testGetNumber();
+
+//* The fourth function
+
+function getString(startString, minLength, addSymbols) {
+  if (startString.length >= minLength) {
+    return (startString);
   }
-  const newString = string.toString().replace(/[\D]*/g, '');
-  const number = Number(newString);
-  if (newString.length === 0) {
-    return NaN;
+
+  while (startString.length < minLength) {
+    if ((addSymbols + startString).length > minLength) {
+      const cut = minLength - startString.length;
+      addSymbols = addSymbols.slice(0, cut);
+    }
+    startString = addSymbols + startString;
   }
-  return number;
+  return (startString);
 }
 
-const arrForTest = [0, 1, -1, 1.5, -1.5, '', '123', '-123','sdf', '123sdf', 'sdf123sdf', 'sdf123', null];
-
-function testGetNumber() {
-  for (let i = 0; i < arrForTest.length; i++) {
-    const elem = arrForTest[i];
-    getNumber(elem);
-  }
-}
-
-testGetNumber();
-
+getString('1', 2, '0');
+getString('1', 4, '0');
+getString('q', 4, 'werty');
+getString('q', 4, 'we');
+getString('qwerty', 4, '0');
