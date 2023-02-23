@@ -1,10 +1,16 @@
 //* First function
+const firstUserString = 'sdfsgg';
+const firstLength = 5;
 
 function isValid(string, length) {
   return string.length <= length;
 }
 
+isValid(firstUserString, firstLength);
+
 //* Second function
+
+const secondUserString = 'sdgsg';
 
 function isPalindrome (string) {
   let newString = '';
@@ -15,7 +21,11 @@ function isPalindrome (string) {
   return newString === string;
 }
 
+isPalindrome(secondUserString);
+
 //* Third function"
+
+const thirdUserString = '3l4knl2k';
 
 function getNumber(string) {
   if (string === undefined || string === null) {
@@ -29,7 +39,13 @@ function getNumber(string) {
   return number;
 }
 
+getNumber(thirdUserString);
+
 //* The fourth function
+
+const fourthUserString = 'MMM';
+const needLength = 5;
+const symbol = '42M';
 
 function getString(startString, minLength, addSymbols) {
   if (startString.length >= minLength) {
@@ -45,3 +61,5 @@ function getString(startString, minLength, addSymbols) {
   }
   return startString;
 }
+
+getString(fourthUserString, needLength, symbol);
