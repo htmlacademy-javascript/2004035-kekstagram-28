@@ -70,31 +70,27 @@ function createIdGenerator() {
 
 const generatePostId = createIdGenerator();
 const generateUrlId = createIdGenerator();
-//const generateCommentId = createIdGenerator();
+const generateCommentId = createIdGenerator();
 
 const createMessage = () =>
   Array
     .from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(COMMENTS))
     .join(' ');
 
-const createComment = (gen) => ({
-  id: gen(),
+const createComment = () => ({
+  id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, LENGTH_COMMENTS)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES)
 });
 
-const createPost = () => {
-  const comGen = createIdGenerator();
-
-  return {
-    id: generatePostId(),
-    url: `photos/${generateUrlId()}.jpg`,
-    description: getRandomArrayElement(DESCRIPTIONS),
-    likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-    comments: Array.from({ length: getRandomInteger(0, LENGTH_COMMENTS)},() => createComment(comGen))
-  };
-};
+const createPost = () => ({
+  id: generatePostId(),
+  url: `photos/${generateUrlId()}.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+  comments: Array.from({ length: getRandomInteger(0, LENGTH_COMMENTS)}, createComment)
+});
 
 const createPosts = () =>
   Array
