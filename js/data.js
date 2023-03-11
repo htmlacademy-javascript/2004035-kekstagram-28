@@ -89,4 +89,4 @@ const createPosts = () =>
   Array
     .from({length: PUBLIC_NUMBER}, () => createPost());
 
-createPosts();
+export {createPosts};
