@@ -8,3 +8,17 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 export {getRandomInteger, getRandomArrayElement};
+
+const getNumber = function (string) {
+  if (string === undefined || string === null) {
+    return NaN;
+  }
+  const newString = string.toString().replace(/[\D]*/g, '');
+  const number = Number(newString);
+  if (newString.length === 0) {
+    return NaN;
+  }
+  return number;
+};
+
+export { getNumber };
