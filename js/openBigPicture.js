@@ -17,6 +17,12 @@ const closePicture = function () {
   closePictureButton.removeEventListener('click', closePicture);
 };
 
+const closePictureEsc = function (evt) {
+  if (evt.key === 'Escape') {
+    closePicture();
+  }
+};
+
 const openPicture = function (pic) {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -26,6 +32,7 @@ const openPicture = function (pic) {
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);
   closePictureButton.addEventListener('click', closePicture);
+  document.addEventListener('keydown', closePictureEsc);
 };
 
 let picture;
