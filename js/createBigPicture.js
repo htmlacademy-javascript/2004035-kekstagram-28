@@ -9,6 +9,7 @@ const socialComment = document.querySelector('.social__comment');
 
 const createBigPicture = function (post) {
   bigPicture.querySelector('.big-picture__img img').src = post.url;
+  bigPicture.querySelector('.big-picture__img img').alt = post.description;
   bigPictureLikes.textContent = post.likes;
   bigPictureCommentsCount.textContent = post.comments.length;
   bigPictureDesctiption.textContent = post.description;
