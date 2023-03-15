@@ -17,4 +17,4 @@ const createThumbnails = (data) => {
   picturesContainer.appendChild(dataPostsFragment);
 };
 
-export {createThumbnails, picturesContainer};
+export {createThumbnails, picturesContainer };

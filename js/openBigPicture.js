@@ -1,4 +1,5 @@
 import { createBigPicture } from './createBigPicture.js';
+// import { socialCommentCount } from './thumbnails.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
@@ -26,14 +27,14 @@ const openPicture = function (pic) {
 let picture;
 
 const addListener = function () {
-  const pictures = document.querySelectorAll('.picture');
-  for (let i = 0; i < pictures.length; i++) {
-    picture = pictures[i];
-    picture.addEventListener('click', (evt) => {
-      evt.preventDefault();
+  const pictures = document.querySelector('.pictures');
+  pictures.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    if (evt.target.classList.contains('picture__img')) {
+      picture = evt.target;
       openPicture(picture);
-    });
-  }
+    }
+  });
   return picture;
 };
 
