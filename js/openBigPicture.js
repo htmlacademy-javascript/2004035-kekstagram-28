@@ -1,5 +1,7 @@
 import { createBigPicture } from './createBigPicture.js';
-// import { socialCommentCount } from './thumbnails.js';
+import { getCurrentPostId } from './getCurrentPostId.js';
+import { getObjectData } from './getObjectData.js';
+import { dataPosts } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
@@ -20,7 +22,9 @@ const openPicture = function (pic) {
   body.classList.add('modal-open');
   socialCommentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
-  createBigPicture(pic);
+  const postId = getCurrentPostId(pic);
+  const currentPost = getObjectData(postId, dataPosts);
+  createBigPicture(currentPost);
   closePictureButton.addEventListener('click', closePicture);
 };
 
