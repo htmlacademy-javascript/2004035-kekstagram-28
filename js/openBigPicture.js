@@ -20,6 +20,7 @@ const closePicture = function () {
 const closePictureEsc = function (evt) {
   if (evt.key === 'Escape') {
     closePicture();
+    document.addEventListener('keydown', closePictureEsc);
   }
 };
 
