@@ -1,4 +1,4 @@
-const createComments = function (current, socialComments, socialComment) {
+const createComments = (current, socialComments, socialComment) => {
   const commentsFragment = document.createDocumentFragment();
   const dataComments = current.comments;
   socialComments.innerHTML = '';

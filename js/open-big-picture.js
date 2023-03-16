@@ -1,6 +1,5 @@
-import { createBigPicture } from './createBigPicture.js';
-import { getCurrentPostId } from './getCurrentPostId.js';
-import { getObjectData } from './getObjectData.js';
+import { createBigPicture } from './create-big-picture.js';
+import { getCurrentPostId, getObjectData } from './util.js';
 import { dataPosts } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -9,7 +8,7 @@ const closePictureButton = document.querySelector('.big-picture__cancel');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 
-const closePicture = function () {
+const closePicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   socialCommentCount.classList.remove('hidden');
@@ -17,14 +16,14 @@ const closePicture = function () {
   closePictureButton.removeEventListener('click', closePicture);
 };
 
-const closePictureEsc = function (evt) {
+const closePictureIfEsc = (evt) => {
   if (evt.key === 'Escape') {
     closePicture();
-    document.addEventListener('keydown', closePictureEsc);
+    document.removeEventListener('keydown', closePictureIfEsc);
   }
 };
 
-const openPicture = function (pic) {
+const openPicture = (pic) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   socialCommentCount.classList.add('hidden');
@@ -33,12 +32,12 @@ const openPicture = function (pic) {
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);
   closePictureButton.addEventListener('click', closePicture);
-  document.addEventListener('keydown', closePictureEsc);
+  document.addEventListener('keydown', closePictureIfEsc);
 };
 
 let picture;
 
-const addListener = function () {
+const addPicturesClickListener = () => {
   const pictures = document.querySelector('.pictures');
   pictures.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -50,4 +49,4 @@ const addListener = function () {
   return picture;
 };
 
-export { addListener, picture };
+export { addPicturesClickListener };
