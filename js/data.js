@@ -52,14 +52,14 @@ const MAX_LIKES = 200;
 const LENGTH_COMMENTS = 6;
 const PUBLIC_NUMBER = 25;
 
-function createIdGenerator() {
+const createIdGenerator = () => {
   let lastGeneratedId = 0;
 
-  return function () {
+  return () => {
     lastGeneratedId += 1;
     return lastGeneratedId;
   };
-}
+};
 
 const generatePostId = createIdGenerator();
 const generateUrlId = createIdGenerator();
