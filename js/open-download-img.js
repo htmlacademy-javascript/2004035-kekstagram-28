@@ -1,4 +1,3 @@
-const uploadFileButton = document.querySelector('.img-upload__control');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
 const imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
@@ -16,13 +15,12 @@ const closeImgUploadIfEsc = (evt) => {
   }
 };
 
-const openDownloadImg = () => {
-  uploadFileButton.addEventListener('click', () => {
-    imgUploadOverlay.classList.remove('hidden');
-    body.classList.add('modal-open');
-    imgUploadCancel.addEventListener('click', closeImgUpload);
-    document.addEventListener('keydown', closeImgUploadIfEsc);
-  });
+const openDownloadImg = (evt) => {
+  evt.preventDefault();
+  imgUploadOverlay.classList.remove('hidden');
+  body.classList.add('modal-open');
+  imgUploadCancel.addEventListener('click', closeImgUpload);
+  document.addEventListener('keydown', closeImgUploadIfEsc);
 };
 
 export { openDownloadImg };
