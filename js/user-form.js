@@ -31,41 +31,18 @@ const validateHashtags = (value) => {
     .trim()
     .split(' ')
     .filter((tag) => tag.trim().length);
-  console.log(isAmountValid(tags));
-  console.log(noDublicates(tags));
-  console.log(tags.every(isEveryItemValid));
   return isAmountValid(tags) && noDublicates(tags) && tags.every(isEveryItemValid);
 };
 
 const validateDescription = (value) => value.length <= 140;
 
-pristine.addValidator(hashtagsText, validateHashtags, 'ERROR');
+pristine.addValidator(hashtagsText, validateHashtags, 'Неверно указан комментарий: \nпроверьте, что он начинаниется с #;\nих не больше 5');
 pristine.addValidator(descriptionText, validateDescription, 'Длина описания не может быть больше 140 символов');
-
-// const errorMessages = {
-//   dublicate: 'Хэштеги не доджны повторяться',
-//   nonValide: 'Убедитесь, что хэштеги начинаются с #, содержат только буквы и цифры, имеют длину от 2 до 20 символов и разделяются пробелами',
-//   okCount : 'Не должно быть больше 5 хэштегов'
-// };
-
-// pristineHashtag.addValidator(hashtagsText, noDublicates, errorMessages.dublicate);
-// pristineHashtag.addValidator(hashtagsText, isAmountValid, errorMessages.okCount);
-// pristineHashtag.addValidator(hashtagsText, isEveryItemValid, errorMessages.nonValide);
-
 
 const validateForm = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    console.log(pristine);
-    console.log(pristine.validate());
-    // console.log(noDublicates(hashtagsText));
-    // console.log(isAmountValid(hashtagsText));
-    // console.log(isEveryItemValid(hashtagsText));
-    if (pristine.validate()) {
-      console.log('ok');
-    } else {
-      console.log('you have a problem');
-    }
+    pristine.validate();
   });
 };
 
