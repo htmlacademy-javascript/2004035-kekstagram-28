@@ -1408,3 +1408,11 @@ main {
 .hidden {
   display: none;
 }
+
+/* Ощибки
+   ==================================== */
+
+.img-upload__field-wrapper--error {
+  color: #ff0000;
+  background-color: transparent;
+}

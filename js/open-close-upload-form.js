@@ -32,7 +32,6 @@ const notNeedCloseIfEsc = (evt) => {
 const openForm = () => {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  validateForm();
   closeFormButton.addEventListener('click', closeForm);
   document.addEventListener('keydown', closeFormIfEsc);
   textDescription.addEventListener('keydown', notNeedCloseIfEsc);
@@ -40,7 +39,8 @@ const openForm = () => {
 };
 
 const openFormListener = () => {
-  uploadInputButton.addEventListener('change', openForm);
+  document.addEventListener('change', openForm);
+  validateForm();
 };
 
 export { openFormListener };

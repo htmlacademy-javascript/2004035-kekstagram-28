@@ -40,10 +40,10 @@ let picture;
 const addPicturesClickListener = () => {
   const pictures = document.querySelector('.pictures');
   pictures.addEventListener('click', (evt) => {
-    evt.preventDefault();
     if (evt.target.classList.contains('picture__img')) {
       picture = evt.target;
       openPicture(picture);
+      evt.preventDefault();
     }
   });
   return picture;
