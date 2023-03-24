@@ -11,15 +11,7 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error'
 });
 
-// const validTemplate = (value) => {
-//   const tags = value
-//     .trim()
-//     .split(' ')
-//     .filter((tag) => tag.trim().length);
-//   return tags;
-// };
-
-const noDublicates = (value) => {
+const hasDuplicates = (value) => {
   const lowerCaseTags = value.map((tag) => tag.toLowerCase());
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
@@ -31,7 +23,7 @@ const validateHashtags = (value) => {
     .trim()
     .split(' ')
     .filter((tag) => tag.trim().length);
-  return isAmountValid(tags) && noDublicates(tags) && tags.every(isEveryItemValid);
+  return isAmountValid(tags) && hasDuplicates(tags) && tags.every(isEveryItemValid);
 };
 
 const validateDescription = (value) => value.length <= 140;
@@ -39,11 +31,11 @@ const validateDescription = (value) => value.length <= 140;
 pristine.addValidator(hashtagsText, validateHashtags, 'Неверно указан комментарий: \nпроверьте, что он начинаниется с #;\nих не больше 5');
 pristine.addValidator(descriptionText, validateDescription, 'Длина описания не может быть больше 140 символов');
 
-const validateForm = () => {
+const onFormSubmit = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     pristine.validate();
   });
 };
 
-export { validateForm };
+export { onFormSubmit };

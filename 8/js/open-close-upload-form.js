@@ -1,4 +1,4 @@
-import { validateForm } from './user-form.js';
+import { onFormSubmit } from './user-form.js';
 
 const uploadInputButton = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
@@ -14,18 +14,16 @@ const closeForm = () => {
   uploadInputButton.value = '';
 };
 
-const closeFormIfEsc = (evt) => {
+const onFormKeydown = (evt) => {
   if (evt.key === 'Escape') {
     closeForm();
-    document.removeEventListener('keydown', closeFormIfEsc);
+    document.removeEventListener('keydown', onFormKeydown);
   }
 };
 
-const notNeedCloseIfEsc = (evt) => {
-  if (evt.key === 'Escape') {
+const onInputKeydown = (evt) => {
+  if (evt.key === 'Escape' && (textHashtags === document.activeElement || textDescription === document.activeElement)) {
     evt.stopPropagation();
-    textDescription.removeEventListener('keydown', notNeedCloseIfEsc);
-    textHashtags.removeEventListener('keydown', notNeedCloseIfEsc);
   }
 };
 
@@ -33,14 +31,14 @@ const openForm = () => {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   closeFormButton.addEventListener('click', closeForm);
-  document.addEventListener('keydown', closeFormIfEsc);
-  textDescription.addEventListener('keydown', notNeedCloseIfEsc);
-  textHashtags.addEventListener('keydown', notNeedCloseIfEsc);
+  document.addEventListener('keydown', onFormKeydown);
+  textDescription.addEventListener('keydown', onInputKeydown);
+  textHashtags.addEventListener('keydown', onInputKeydown);
 };
 
-const openFormListener = () => {
+const setOpenFormListener = () => {
   document.addEventListener('change', openForm);
-  validateForm();
+  onFormSubmit();
 };
 
-export { openFormListener };
+export { setOpenFormListener };
