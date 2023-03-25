@@ -1,4 +1,5 @@
 import { onFormSubmit } from './user-form.js';
+import { changeImgScale } from './img-scale.js';
 
 const uploadInputButton = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
@@ -34,6 +35,7 @@ const openForm = () => {
   document.addEventListener('keydown', onFormKeydown);
   textDescription.addEventListener('keydown', onInputKeydown);
   textHashtags.addEventListener('keydown', onInputKeydown);
+  changeImgScale();
 };
 
 const setOpenFormListener = () => {
