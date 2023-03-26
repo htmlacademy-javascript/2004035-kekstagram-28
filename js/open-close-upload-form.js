@@ -1,5 +1,6 @@
 import { onFormSubmit } from './user-form.js';
 import { changeImgScale } from './img-scale.js';
+import { changeEffects, resetEffect, unitSlider } from './effects.js';
 
 const uploadInputButton = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
@@ -13,6 +14,7 @@ const closeForm = () => {
   body.classList.remove('modal-open');
   closeFormButton.removeEventListener('click', closeForm);
   uploadInputButton.value = '';
+  resetEffect();
 };
 
 const onFormKeydown = (evt) => {
@@ -35,11 +37,15 @@ const openForm = () => {
   document.addEventListener('keydown', onFormKeydown);
   textDescription.addEventListener('keydown', onInputKeydown);
   textHashtags.addEventListener('keydown', onInputKeydown);
-  changeImgScale();
+  // createSlider();
+  // changeImgScale();
+  changeEffects();
 };
 
 const setOpenFormListener = () => {
   document.addEventListener('change', openForm);
+  unitSlider();
+  changeImgScale();
   onFormSubmit();
 };
 
