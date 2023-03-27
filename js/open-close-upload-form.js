@@ -1,6 +1,6 @@
 import { onFormSubmit } from './user-form.js';
 import { changeImgScale } from './img-scale.js';
-import { changeEffects, resetEffect, unitSlider } from './effects.js';
+import { changeEffects, resetEffect, initSlider } from './effects.js';
 
 const uploadInputButton = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
@@ -44,7 +44,7 @@ const openForm = () => {
 
 const setOpenFormListener = () => {
   document.addEventListener('change', openForm);
-  unitSlider();
+  initSlider();
   changeImgScale();
   onFormSubmit();
 };

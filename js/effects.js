@@ -88,7 +88,7 @@ const updateSlider = () => {
   });
 };
 
-const unitSlider = () => {
+const initSlider = () => {
   noUiSlider.create(slider, {
     range: {
       min: DEFAULT_EFFECT.min,
@@ -120,4 +120,4 @@ const resetEffect = () => {
   updateSlider();
 };
 
-export { changeEffects, unitSlider, viewSlider, resetEffect };
+export { changeEffects, initSlider, viewSlider, resetEffect };
