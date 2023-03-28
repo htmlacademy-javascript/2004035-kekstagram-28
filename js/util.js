@@ -20,9 +20,6 @@ const getNumber = (string) => {
 };
 
 const getObjectData = (pictureId, data) => {
-  // if (data === undefined) {
-  //   return;
-  // }
   const currentPostData = data.find((current) => current.id === pictureId);
   return currentPostData;
 };
@@ -33,4 +30,10 @@ const getCurrentPostId = (currentPicture) => {
   return currentPictureId;
 };
 
-export { getRandomInteger, getRandomArrayElement, getNumber, getObjectData, getCurrentPostId };
+const onClickWithinAlert = (evt, className, cb) => {
+  if (evt.target.className === className) {
+    cb();
+  }
+};
+
+export { getRandomInteger, getRandomArrayElement, getNumber, getObjectData, getCurrentPostId, onClickWithinAlert };

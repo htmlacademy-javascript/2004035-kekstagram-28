@@ -1,13 +1,8 @@
 import { createThumbnails } from './thumbnails.js';
-// import { createPosts } from './data.js';
 import { addPicturesClickListener } from './open-big-picture.js';
 import { setOpenFormListener } from './open-close-upload-form.js';
 import { getData } from './api.js';
-
-// console.log(getData());
-
-// const dataPosts = getData();
-// createThumbnails(dataPosts);
+import { initSuccesseAlert, initFailAlert } from './open-close-form-alert.js';
 
 getData()
   .then((posts) => {
@@ -16,7 +11,6 @@ getData()
   })
   .then((data) => addPicturesClickListener(data));
 
-// addPicturesClickListener();
+initSuccesseAlert();
+initFailAlert();
 setOpenFormListener();
-
-// export {dataPosts};
