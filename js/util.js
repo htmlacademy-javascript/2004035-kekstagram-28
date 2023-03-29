@@ -36,4 +36,12 @@ const onClickWithinAlert = (evt, className, cb) => {
   }
 };
 
-export { getRandomInteger, getRandomArrayElement, getNumber, getObjectData, getCurrentPostId, onClickWithinAlert };
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomInteger, getRandomArrayElement, getNumber, getObjectData, getCurrentPostId, onClickWithinAlert, debounce };
