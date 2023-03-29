@@ -1,5 +1,4 @@
 import { createThumbnails } from './thumbnails.js';
-// import { debounce } from './util.js';
 
 const filtersBlock = document.querySelector('.img-filters');
 const filtersForm = document.querySelector('.img-filters__form');
