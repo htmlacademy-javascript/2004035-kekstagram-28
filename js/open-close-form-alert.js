@@ -13,27 +13,27 @@ const initSuccesseAlert = () => {
   successBlock.classList.add('hidden');
 };
 
-const removeSuccesseAlert = () => {
+const removeSuccessesAlert = () => {
   successBlock.classList.add('hidden');
-  closeSuccesseAlertButton.removeEventListener('click', removeSuccesseAlert);
+  closeSuccesseAlertButton.removeEventListener('click', removeSuccessesAlert);
   document.removeEventListener('click', (evt) => {
-    onClickWithinAlert(evt, 'success', removeSuccesseAlert);
+    onClickWithinAlert(evt, 'success', removeSuccessesAlert);
   });
   closeForm();
 };
 
 const onSuccesseAlertKeydown = (evt) => {
   if (evt.key === 'Escape') {
-    removeSuccesseAlert();
+    removeSuccessesAlert();
     document.removeEventListener('keydown', onSuccesseAlertKeydown);
   }
 };
 
 const closeSuccesseAlert = () => {
-  closeSuccesseAlertButton.addEventListener('click', removeSuccesseAlert);
+  closeSuccesseAlertButton.addEventListener('click', removeSuccessesAlert);
   document.addEventListener('keydown', onSuccesseAlertKeydown);
   document.addEventListener('click', (evt) => {
-    onClickWithinAlert(evt, 'success', removeSuccesseAlert);
+    onClickWithinAlert(evt, 'success', removeSuccessesAlert);
   });
 };
 
