@@ -7,8 +7,6 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomInteger, getRandomArrayElement};
-
 const getNumber = (string) => {
   if (string === undefined || string === null) {
     return NaN;
@@ -21,14 +19,10 @@ const getNumber = (string) => {
   return number;
 };
 
-export { getNumber };
-
 const getObjectData = (pictureId, data) => {
   const currentPostData = data.find((current) => current.id === pictureId);
   return currentPostData;
 };
-
-export { getObjectData };
 
 const getCurrentPostId = (currentPicture) => {
   const currentPictureSrc = currentPicture.getAttribute('src');
@@ -36,4 +30,10 @@ const getCurrentPostId = (currentPicture) => {
   return currentPictureId;
 };
 
-export { getCurrentPostId };
+const onClickWithinAlert = (evt, className, cb) => {
+  if (evt.target.className === className) {
+    cb();
+  }
+};
+
+export { getRandomInteger, getRandomArrayElement, getNumber, getObjectData, getCurrentPostId, onClickWithinAlert };

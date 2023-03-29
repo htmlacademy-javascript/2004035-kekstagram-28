@@ -1,6 +1,6 @@
 import { createBigPicture } from './create-big-picture.js';
 import { getCurrentPostId, getObjectData } from './util.js';
-import { dataPosts } from './main.js';
+// import { dataPosts } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
@@ -23,12 +23,12 @@ const closePictureIfEsc = (evt) => {
   }
 };
 
-const openPicture = (pic) => {
+const openPicture = (pic, dataPosts) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   socialCommentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
-  const postId = getCurrentPostId(pic);
+  const postId = getCurrentPostId(pic) - 1;
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);
   closePictureButton.addEventListener('click', closePicture);
@@ -37,12 +37,12 @@ const openPicture = (pic) => {
 
 let picture;
 
-const addPicturesClickListener = () => {
+const addPicturesClickListener = (dataPosts) => {
   const pictures = document.querySelector('.pictures');
   pictures.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('picture__img')) {
       picture = evt.target;
-      openPicture(picture);
+      openPicture(picture, dataPosts);
       evt.preventDefault();
     }
   });

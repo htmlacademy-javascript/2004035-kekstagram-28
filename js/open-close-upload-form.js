@@ -14,6 +14,8 @@ const closeForm = () => {
   body.classList.remove('modal-open');
   closeFormButton.removeEventListener('click', closeForm);
   uploadInputButton.value = '';
+  textHashtags.value = '';
+  textDescription.value = '';
   resetEffect();
 };
 
@@ -37,8 +39,6 @@ const openForm = () => {
   document.addEventListener('keydown', onFormKeydown);
   textDescription.addEventListener('keydown', onInputKeydown);
   textHashtags.addEventListener('keydown', onInputKeydown);
-  // createSlider();
-  // changeImgScale();
   changeEffects();
 };
 
@@ -49,4 +49,4 @@ const setOpenFormListener = () => {
   onFormSubmit();
 };
 
-export { setOpenFormListener };
+export { setOpenFormListener, closeForm };
