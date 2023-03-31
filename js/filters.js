@@ -18,10 +18,10 @@ const removeThumbnails = () => {
   document.querySelectorAll('a.picture').forEach((el) => el.remove());
 };
 
-const onClickFilter = (data, evt) => {
+const onFilterClick = (data, evt) => {
   let currentPhotos = [];
   if (evt.target.classList.contains('img-filters__button')) {
-    const sortType = evt.target.id.slice(7);
+    const sortType = evt.target.dataset.filter;
     const getSortPosts = () => data.slice().sort(Filter[sortType]);
     currentPhotos = getSortPosts();
     if (sortType === 'random') {
@@ -40,4 +40,4 @@ const setClickFilter = (cb) => {
   });
 };
 
-export { showFiltersBlock, setClickFilter, onClickFilter };
+export { showFiltersBlock, setClickFilter, onFilterClick };
