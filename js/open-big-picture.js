@@ -1,6 +1,5 @@
 import { createBigPicture } from './create-big-picture.js';
 import { getCurrentPostId, getObjectData } from './util.js';
-// import { dataPosts } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
