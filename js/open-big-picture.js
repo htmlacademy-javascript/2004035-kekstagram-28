@@ -1,11 +1,13 @@
 import { createBigPicture } from './create-big-picture.js';
 import { getCurrentPostId, getObjectData } from './util.js';
+import { viewComments, onClickShowYet } from './viewComments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
 const closePictureButton = document.querySelector('.big-picture__cancel');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
+const commentsLoaderButton = document.querySelector('.social__comments-loader');
 
 const closePicture = () => {
   bigPicture.classList.add('hidden');
@@ -13,6 +15,7 @@ const closePicture = () => {
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   closePictureButton.removeEventListener('click', closePicture);
+  commentsLoaderButton.removeEventListener('click', onClickShowYet);
 };
 
 const closePictureIfEsc = (evt) => {
@@ -22,16 +25,20 @@ const closePictureIfEsc = (evt) => {
   }
 };
 
+const setClickShowButton = () => {
+  commentsLoaderButton.addEventListener('click', onClickShowYet);
+};
+
 const openPicture = (pic, dataPosts) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
-  socialCommentCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
   const postId = getCurrentPostId(pic) - 1;
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);
   closePictureButton.addEventListener('click', closePicture);
   document.addEventListener('keydown', closePictureIfEsc);
+  viewComments();
+  setClickShowButton();
 };
 
 let picture;
