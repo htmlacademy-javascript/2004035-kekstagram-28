@@ -1,13 +1,15 @@
 import { createBigPicture } from './create-big-picture.js';
 import { getCurrentPostId, getObjectData } from './util.js';
-import { viewComments, onClickShowYet } from './viewComments.js';
+// import { viewComments, onClickShowYet } from './viewComments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
 const closePictureButton = document.querySelector('.big-picture__cancel');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
-const commentsLoaderButton = document.querySelector('.social__comments-loader');
+// const commentsLoaderButton = document.querySelector('.social__comments-loader');
+let shownComments = 0;
+let comments = [];
 
 const closePicture = () => {
   bigPicture.classList.add('hidden');
@@ -15,7 +17,9 @@ const closePicture = () => {
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   closePictureButton.removeEventListener('click', closePicture);
-  commentsLoaderButton.removeEventListener('click', onClickShowYet);
+  // commentsLoaderButton.removeEventListener('click', onClickShowYet);
+  comments = [];
+  shownComments = 0;
 };
 
 const closePictureIfEsc = (evt) => {
@@ -25,20 +29,20 @@ const closePictureIfEsc = (evt) => {
   }
 };
 
-const setClickShowButton = () => {
-  commentsLoaderButton.addEventListener('click', onClickShowYet);
-};
+// const setClickShowButton = () => {
+//   commentsLoaderButton.addEventListener('click', onClickShowYet);
+// };
 
 const openPicture = (pic, dataPosts) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   const postId = getCurrentPostId(pic) - 1;
   const currentPost = getObjectData(postId, dataPosts);
-  createBigPicture(currentPost);
+  createBigPicture(currentPost, shownComments, comments);
   closePictureButton.addEventListener('click', closePicture);
   document.addEventListener('keydown', closePictureIfEsc);
-  viewComments();
-  setClickShowButton();
+  // viewComments();
+  // setClickShowButton();
 };
 
 let picture;
