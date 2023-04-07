@@ -1,3 +1,5 @@
+const COMMENT_COUNTER = 5;
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureLikes = bigPicture.querySelector('.likes-count');
 const bigPictureCommentsCount = bigPicture.querySelector('.comments-count');
@@ -9,7 +11,6 @@ const allCommentsCount = document.querySelector('.comments-count');
 const commentsView = document.querySelector('.comments-view');
 const closePictureButton = document.querySelector('.big-picture__cancel');
 
-const COMMENT_COUNTER = 5;
 let shownComments = 0;
 let comments = [];
 
