@@ -61,9 +61,9 @@ const createIdGenerator = () => {
   };
 };
 
-const generatePostId = createIdGenerator();
-const generateUrlId = createIdGenerator();
-const generateCommentId = createIdGenerator();
+const generatedPostId = createIdGenerator();
+const generatedUrlId = createIdGenerator();
+const generatedCommentId = createIdGenerator();
 
 const createMessage = () =>
   Array
@@ -71,15 +71,15 @@ const createMessage = () =>
     .join(' ');
 
 const createComment = () => ({
-  id: generateCommentId(),
+  id: generatedCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, LENGTH_COMMENTS)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES)
 });
 
 const createPost = () => ({
-  id: generatePostId(),
-  url: `photos/${generateUrlId()}.jpg`,
+  id: generatedPostId(),
+  url: `photos/${generatedUrlId()}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   comments: Array.from({ length: getRandomInteger(0, LENGTH_COMMENTS)}, createComment)
