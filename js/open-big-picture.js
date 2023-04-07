@@ -1,4 +1,4 @@
-import { createBigPicture } from './create-big-picture.js';
+import { createBigPicture, removeEventFillComments } from './create-big-picture.js';
 import { getCurrentPostId, getObjectData } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -13,6 +13,7 @@ const closePicture = () => {
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   closePictureButton.removeEventListener('click', closePicture);
+  removeEventFillComments();
 };
 
 const closePictureIfEsc = (evt) => {
@@ -25,8 +26,6 @@ const closePictureIfEsc = (evt) => {
 const openPicture = (pic, dataPosts) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
-  socialCommentCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
   const postId = getCurrentPostId(pic) - 1;
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);

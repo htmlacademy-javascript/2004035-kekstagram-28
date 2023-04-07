@@ -8,6 +8,10 @@ const textHashtags = document.querySelector('.text__hashtags');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const closeFormButton = document.querySelector('.img-upload__cancel');
 const body = document.querySelector('body');
+const inputImg = document.querySelector('.img-upload__input');
+const previewImg = document.querySelector('.img-upload__preview img');
+
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const closeForm = () => {
   imgUploadOverlay.classList.add('hidden');
@@ -32,6 +36,15 @@ const onInputKeydown = (evt) => {
   }
 };
 
+const uplouadImg = () => {
+  const file = inputImg.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (matches) {
+    previewImg.src = URL.createObjectURL(file);
+  }
+};
+
 const openForm = () => {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -39,6 +52,7 @@ const openForm = () => {
   document.addEventListener('keydown', onFormKeydown);
   textDescription.addEventListener('keydown', onInputKeydown);
   textHashtags.addEventListener('keydown', onInputKeydown);
+  uplouadImg();
   changeEffects();
 };
 
