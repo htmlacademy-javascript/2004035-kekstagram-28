@@ -36,11 +36,11 @@ const fillComments = () => {
   }
 };
 
-const setClickLoaderButton = () => fillComments(comments, shownComments);
+const setLoaderClickButton = () => fillComments(comments, shownComments);
 const setClickCloseButton = () => {
   shownComments = 0;
   comments = [];
-  commentsLoaderButton.removeEventListener('click', setClickLoaderButton);
+  commentsLoaderButton.removeEventListener('click', setLoaderClickButton);
 };
 
 const createBigPicture = (post) => {
@@ -52,7 +52,7 @@ const createBigPicture = (post) => {
   socialComments.innerHTML = '';
   comments = post.comments;
   fillComments(comments, shownComments);
-  commentsLoaderButton.addEventListener('click', setClickLoaderButton);
+  commentsLoaderButton.addEventListener('click', setLoaderClickButton);
   closePictureButton.addEventListener('click', setClickCloseButton);
 };
 
