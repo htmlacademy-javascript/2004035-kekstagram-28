@@ -61,25 +61,21 @@ const createIdGenerator = () => {
   };
 };
 
-const generatedPostId = createIdGenerator();
-const generatedUrlId = createIdGenerator();
-const generatedCommentId = createIdGenerator();
-
 const createMessage = () =>
   Array
     .from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(COMMENTS))
     .join(' ');
 
 const createComment = () => ({
-  id: generatedCommentId(),
+  id: createIdGenerator(),
   avatar: `img/avatar-${getRandomInteger(1, LENGTH_COMMENTS)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES)
 });
 
 const createPost = () => ({
-  id: generatedPostId(),
-  url: `photos/${generatedUrlId()}.jpg`,
+  id: createIdGenerator(),
+  url: `photos/${createIdGenerator()}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   comments: Array.from({ length: getRandomInteger(0, LENGTH_COMMENTS)}, createComment)
