@@ -2,6 +2,8 @@ import { onFormSubmit } from './user-form.js';
 import { changeImgScale } from './img-scale.js';
 import { changeEffects, resetEffect, initSlider } from './effects.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadInputButton = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -10,8 +12,6 @@ const closeFormButton = document.querySelector('.img-upload__cancel');
 const body = document.querySelector('body');
 const inputImg = document.querySelector('.img-upload__input');
 const previewImg = document.querySelector('.img-upload__preview img');
-
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const closeForm = () => {
   imgUploadOverlay.classList.add('hidden');

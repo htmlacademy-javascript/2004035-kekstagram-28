@@ -48,13 +48,13 @@ const EFFECTS = [
     unit: ''
   },
 ];
+const DEFAULT_EFFECT = EFFECTS[0];
 
 const slider = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects__list');
 const imgPreview = document.querySelector('.img-upload__preview img');
 
-const DEFAULT_EFFECT = EFFECTS[0];
 let currentEffect = DEFAULT_EFFECT;
 
 const addEffect = (evt) => {
