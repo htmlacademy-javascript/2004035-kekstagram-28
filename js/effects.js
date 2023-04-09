@@ -54,6 +54,7 @@ const slider = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects__list');
 const imgPreview = document.querySelector('.img-upload__preview img');
+const effectLevelBackground = document.querySelector('.img-upload__effect-level');
 
 let currentEffect = DEFAULT_EFFECT;
 
@@ -69,10 +70,12 @@ const isDefault = () => currentEffect === DEFAULT_EFFECT;
 
 const showSlider = () => {
   slider.classList.remove('hidden');
+  effectLevelBackground.classList.remove('hidden');
 };
 
 const hideSlider = () => {
   slider.classList.add('hidden');
+  effectLevelBackground.classList.add('hidden');
 };
 
 const viewSlider = () => isDefault() ? hideSlider() : showSlider();

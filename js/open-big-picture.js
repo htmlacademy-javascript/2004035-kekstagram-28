@@ -10,10 +10,10 @@ const commentsLoader = document.querySelector('.comments-loader');
 const closePicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
+  removeEventFillComments();
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   closePictureButton.removeEventListener('click', closePicture);
-  removeEventFillComments();
 };
 
 const closePictureIfEsc = (evt) => {

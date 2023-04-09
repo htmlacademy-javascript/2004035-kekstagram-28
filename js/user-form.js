@@ -3,6 +3,7 @@ import { onSuccess, onFail } from './open-close-form-alert.js';
 
 const REGEX = /^#[а-яёa-z0-9]{1,19}$/i;
 const HASHTAG = 5;
+const MAX_LENGTH_DESSCRIPTION = 140;
 
 const form = document.querySelector('.img-upload__form');
 const hashtagsText = form.querySelector('.text__hashtags');
@@ -34,7 +35,7 @@ const validateHashtags = (value) => {
   return isAmountValid(tags) && hasDuplicates(tags) && tags.every(isEveryItemValid);
 };
 
-const validateDescription = (value) => value.length <= 140;
+const validateDescription = (value) => value.length <= MAX_LENGTH_DESSCRIPTION;
 
 pristine.addValidator(hashtagsText, validateHashtags, 'Неверно указан комментарий: \nпроверьте, что он начинаниется с #;\nих не больше 5');
 pristine.addValidator(descriptionText, validateDescription, 'Длина описания не может быть больше 140 символов');
