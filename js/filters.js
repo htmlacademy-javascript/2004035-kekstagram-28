@@ -1,5 +1,8 @@
 import { createThumbnails } from './thumbnails.js';
 
+const SORT_RANDOM = 'random';
+const MAX_SHOW_COMMENTS = 10;
+
 const filtersBlock = document.querySelector('.img-filters');
 const filtersForm = document.querySelector('.img-filters__form');
 const filterButtons = filtersForm.querySelectorAll('.img-filters__button');
@@ -9,13 +12,13 @@ const showFiltersBlock = () => {
 };
 
 const Filter = {
-  default: (elem) => elem,
+  default: (element) => element,
   random: () => Math.random() - 0.5,
   discussed: (postA, postB) => postB.comments.length - postA.comments.length,
 };
 
 const removeThumbnails = () => {
-  document.querySelectorAll('a.picture').forEach((el) => el.remove());
+  document.querySelectorAll('a.picture').forEach((element) => element.remove());
 };
 
 const onFilterClick = (data, evt) => {
@@ -24,8 +27,8 @@ const onFilterClick = (data, evt) => {
     const sortType = evt.target.dataset.filter;
     const getSortPosts = () => data.slice().sort(Filter[sortType]);
     currentPhotos = getSortPosts();
-    if (sortType === 'random') {
-      currentPhotos = currentPhotos.slice(0, 10);
+    if (sortType === SORT_RANDOM) {
+      currentPhotos = currentPhotos.slice(0, MAX_SHOW_COMMENTS);
     }
   }
   removeThumbnails();

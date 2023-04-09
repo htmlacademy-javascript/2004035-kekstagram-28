@@ -17,18 +17,19 @@ const closeForm = () => {
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   closeFormButton.removeEventListener('click', closeForm);
+  document.removeEventListener('keydown', onFormKeydown);
   uploadInputButton.value = '';
   textHashtags.value = '';
   textDescription.value = '';
   resetEffect();
 };
 
-const onFormKeydown = (evt) => {
+function onFormKeydown (evt){
   if (evt.key === 'Escape') {
     closeForm();
     document.removeEventListener('keydown', onFormKeydown);
   }
-};
+}
 
 const onInputKeydown = (evt) => {
   if (evt.key === 'Escape' && (textHashtags === document.activeElement || textDescription === document.activeElement)) {
@@ -39,7 +40,7 @@ const onInputKeydown = (evt) => {
 const uplouadImg = () => {
   const file = inputImg.files[0];
   const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
   if (matches) {
     previewImg.src = URL.createObjectURL(file);
   }

@@ -38,10 +38,13 @@ const fillComments = () => {
 };
 
 const setLoaderClickButton = () => fillComments(comments, shownComments);
-const setClickCloseButton = () => {
-  shownComments = 0;
-  comments = [];
-  commentsLoaderButton.removeEventListener('click', setLoaderClickButton);
+const setClickCloseButton = (evt) => {
+  if (evt.key === 'Escape' || evt.target.classList[0] === 'big-picture__cancel') {
+    shownComments = 0;
+    comments = [];
+    commentsLoaderButton.removeEventListener('click', setLoaderClickButton);
+    document.removeEventListener('keydown', setClickCloseButton);
+  }
 };
 
 const createBigPicture = (post) => {
@@ -55,6 +58,7 @@ const createBigPicture = (post) => {
   fillComments(comments, shownComments);
   commentsLoaderButton.addEventListener('click', setLoaderClickButton);
   closePictureButton.addEventListener('click', setClickCloseButton);
+  document.addEventListener('keydown', setClickCloseButton);
 };
 
 const removeEventFillComments = () => {
