@@ -21,7 +21,7 @@ const getCurrentPostId = (currentPicture) => {
   return currentPictureId;
 };
 
-const onClickWithinAlert = (evt, className, cb) => {
+const onWithinAlertClick = (evt, className, cb) => {
   if (evt.target.className === className) {
     cb();
   }
@@ -35,4 +35,6 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export { getNumber, getObjectData, getCurrentPostId, onClickWithinAlert, debounce };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getNumber, getObjectData, getCurrentPostId, onWithinAlertClick, debounce, isEscapeKey };

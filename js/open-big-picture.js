@@ -1,5 +1,5 @@
 import { createBigPicture, removeEventFillComments } from './create-big-picture.js';
-import { getCurrentPostId, getObjectData } from './util.js';
+import { getCurrentPostId, getObjectData, isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
@@ -7,19 +7,21 @@ const closePictureButton = document.querySelector('.big-picture__cancel');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 
-const closePicture = () => {
+const onClosePictureClick = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   removeEventFillComments();
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
-  closePictureButton.removeEventListener('click', closePicture);
+  closePictureButton.removeEventListener('click', onClosePictureClick);
 };
 
-const closePictureIfEsc = (evt) => {
-  if (evt.key === 'Escape') {
+const closePicture = () => onClosePictureClick();
+
+const onEscapeKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
     closePicture();
-    document.removeEventListener('keydown', closePictureIfEsc);
+    document.removeEventListener('keydown', onEscapeKeydown);
   }
 };
 
@@ -29,8 +31,8 @@ const openPicture = (pic, dataPosts) => {
   const postId = getCurrentPostId(pic) - 1;
   const currentPost = getObjectData(postId, dataPosts);
   createBigPicture(currentPost);
-  closePictureButton.addEventListener('click', closePicture);
-  document.addEventListener('keydown', closePictureIfEsc);
+  closePictureButton.addEventListener('click', onClosePictureClick);
+  document.addEventListener('keydown', onEscapeKeydown);
 };
 
 let picture;

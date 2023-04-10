@@ -1,3 +1,5 @@
+import { isEscapeKey } from './util.js';
+
 const COMMENT_COUNTER = 5;
 
 const bigPicture = document.querySelector('.big-picture');
@@ -37,13 +39,13 @@ const fillComments = () => {
   }
 };
 
-const setLoaderClickButton = () => fillComments(comments, shownComments);
-const setClickCloseButton = (evt) => {
-  if (evt.key === 'Escape' || evt.target.classList[0] === 'big-picture__cancel') {
+const onLoaderButtonClick = () => fillComments(comments, shownComments);
+const onCloseButtonClick = (evt) => {
+  if (isEscapeKey(evt) || evt.target.classList[0] === 'big-picture__cancel') {
     shownComments = 0;
     comments = [];
-    commentsLoaderButton.removeEventListener('click', setLoaderClickButton);
-    document.removeEventListener('keydown', setClickCloseButton);
+    commentsLoaderButton.removeEventListener('click', onLoaderButtonClick);
+    document.removeEventListener('keydown', onCloseButtonClick);
   }
 };
 
@@ -56,13 +58,13 @@ const createBigPicture = (post) => {
   socialComments.innerHTML = '';
   comments = post.comments;
   fillComments(comments, shownComments);
-  commentsLoaderButton.addEventListener('click', setLoaderClickButton);
-  closePictureButton.addEventListener('click', setClickCloseButton);
-  document.addEventListener('keydown', setClickCloseButton);
+  commentsLoaderButton.addEventListener('click', onLoaderButtonClick);
+  closePictureButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('keydown', onCloseButtonClick);
 };
 
 const removeEventFillComments = () => {
-  closePictureButton.removeEventListener('click', setClickCloseButton);
+  closePictureButton.removeEventListener('click', onCloseButtonClick);
 };
 
 export { createBigPicture, removeEventFillComments };

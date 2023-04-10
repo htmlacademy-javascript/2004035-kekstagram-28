@@ -19,6 +19,10 @@ const SubmitButtonText = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикую...'
 };
+const ErrorTextMessage = {
+  HashtagErrorMessage: 'Неверно указан комментарий: \nпроверьте, что он начинаниется с #;\nих не больше 5',
+  DescriptionErrorMessage: 'Длина описания не может быть больше 140 символов'
+};
 
 const hasDuplicates = (value) => {
   const lowerCaseTags = value.map((tag) => tag.toLowerCase());
@@ -37,8 +41,8 @@ const validateHashtags = (value) => {
 
 const validateDescription = (value) => value.length <= MAX_LENGTH_DESSCRIPTION;
 
-pristine.addValidator(hashtagsText, validateHashtags, 'Неверно указан комментарий: \nпроверьте, что он начинаниется с #;\nих не больше 5');
-pristine.addValidator(descriptionText, validateDescription, 'Длина описания не может быть больше 140 символов');
+pristine.addValidator(hashtagsText, validateHashtags, ErrorTextMessage.HashtagErrorMessage);
+pristine.addValidator(descriptionText, validateDescription, ErrorTextMessage.DescriptionErrorMessage);
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
