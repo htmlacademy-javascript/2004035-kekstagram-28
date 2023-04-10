@@ -1,54 +1,57 @@
-const EFFECTS = [
-  {
-    name: 'none',
-    style: 'none',
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: ''
-  },
-  {
-    name: 'chrome',
-    style: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: ''
-  },
-  {
-    name: 'sepia',
-    style: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: ''
-  },
-  {
-    name: 'marvin',
-    style: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: '%'
-  },
-  {
-    name: 'phobos',
-    style: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
-    unit: 'px'
-  },
-  {
-    name: 'heat',
-    style: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    unit: ''
-  },
-];
-const DEFAULT_EFFECT = EFFECTS[0];
+const EFFECTS = {
+  none:
+    {
+      name: 'none',
+      style: 'none',
+      min: 0,
+      max: 100,
+      step: 1,
+      unit: ''
+    },
+  chrome:
+    {
+      style: 'grayscale',
+      min: 0,
+      max: 1,
+      step: 0.1,
+      unit: ''
+    },
+  sepia:
+    {
+      style: 'sepia',
+      min: 0,
+      max: 1,
+      step: 0.1,
+      unit: ''
+    },
+  marvin:
+    {
+      style: 'invert',
+      min: 0,
+      max: 100,
+      step: 1,
+      unit: '%'
+    },
+  phobos:
+    {
+      name: 'phobos',
+      style: 'blur',
+      min: 0,
+      max: 3,
+      step: 0.1,
+      unit: 'px'
+    },
+  heat:
+    {
+      name: 'heat',
+      style: 'brightness',
+      min: 1,
+      max: 3,
+      step: 0.1,
+      unit: ''
+    },
+};
+const DEFAULT_EFFECT = EFFECTS.none;
 
 const slider = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
@@ -62,7 +65,7 @@ const addEffect = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
     return;
   }
-  currentEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  currentEffect = EFFECTS[evt.target.value];
   imgPreview.className = `effects__preview--${currentEffect.name}`;
 };
 

@@ -4,17 +4,21 @@ const pictureTemplate = document.querySelector('#picture')
 const dataPostsFragment = document.createDocumentFragment();
 const picturesContainer = document.querySelector('.pictures');
 
-const createThumbnails = (data) => {
-  data.forEach(({url, likes, comments}) => {
-    const pictureElement = pictureTemplate.cloneNode(true);
-    const countComments = comments.length;
-    pictureElement.querySelector('.picture__img').src = url;
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = countComments;
+const createThumbnail = (elementData) => {
+  const pictureElement = pictureTemplate.cloneNode(true);
+  const countComments = elementData.comments.length;
+  pictureElement.querySelector('.picture__img').src = elementData.url;
+  pictureElement.querySelector('.picture__likes').textContent = elementData.likes;
+  pictureElement.querySelector('.picture__comments').textContent = countComments;
+  return pictureElement;
+};
 
-    dataPostsFragment.appendChild(pictureElement);
-  });
+const generateThumbnails = (data) => {
+  for (let i = 0; i < data.length; i++) {
+    const element = createThumbnail(data[i]);
+    dataPostsFragment.appendChild(element);
+  }
   picturesContainer.appendChild(dataPostsFragment);
 };
 
-export {createThumbnails };
+export {generateThumbnails };

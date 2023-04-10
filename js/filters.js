@@ -1,4 +1,4 @@
-import { createThumbnails } from './thumbnails.js';
+import { generateThumbnails } from './thumbnails.js';
 
 const SORT_RANDOM = 'random';
 const MAX_SHOW_COMMENTS = 10;
@@ -32,7 +32,7 @@ const onFilterClick = (data, evt) => {
     }
   }
   removeThumbnails();
-  createThumbnails(currentPhotos);
+  generateThumbnails(currentPhotos);
 };
 
 const setClickFilter = (cb) => {

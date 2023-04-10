@@ -1,5 +1,5 @@
 import { closeForm } from './open-close-upload-form.js';
-import { onClickWithinAlert } from './util.js';
+import { isEscapeKey, onWithinAlertClick } from './util.js';
 
 const successTemplate = document.querySelector('#success').content;
 const successBlock = successTemplate.querySelector('.success');
@@ -13,27 +13,29 @@ const initSuccesseAlert = () => {
   successBlock.classList.add('hidden');
 };
 
-const removeSuccessesAlert = () => {
+const onModalClick = () => {
   successBlock.classList.add('hidden');
-  closeSuccesseAlertButton.removeEventListener('click', removeSuccessesAlert);
+  closeSuccesseAlertButton.removeEventListener('click', onModalClick);
   document.removeEventListener('click', (evt) => {
-    onClickWithinAlert(evt, 'success', removeSuccessesAlert);
+    onWithinAlertClick(evt, 'success', onModalClick);
   });
   closeForm();
 };
 
+const onModalSuccessesKeydown = () => onModalClick();
+
 const onSuccesseAlertKeydown = (evt) => {
-  if (evt.key === 'Escape') {
-    removeSuccessesAlert();
+  if (isEscapeKey(evt)) {
+    onModalSuccessesKeydown();
     document.removeEventListener('keydown', onSuccesseAlertKeydown);
   }
 };
 
 const closeSuccesseAlert = () => {
-  closeSuccesseAlertButton.addEventListener('click', removeSuccessesAlert);
+  closeSuccesseAlertButton.addEventListener('click', onModalClick);
   document.addEventListener('keydown', onSuccesseAlertKeydown);
   document.addEventListener('click', (evt) => {
-    onClickWithinAlert(evt, 'success', removeSuccessesAlert);
+    onWithinAlertClick(evt, 'success', onModalClick);
   });
 };
 
@@ -47,23 +49,25 @@ const initFailAlert = () => {
   failBlock.classList.add('hidden');
 };
 
-const removeFailAlert = () => {
+const onFailModalClick = () => {
   failBlock.classList.add('hidden');
 };
 
+const onFailModalKeydown = () => onFailModalClick();
+
 const onFailAlertKeydown = (evt) => {
-  if (evt.key === 'Escape') {
-    removeFailAlert();
+  if (isEscapeKey(evt)) {
+    onFailModalKeydown();
     document.removeEventListener('keydown', onFailAlertKeydown);
     evt.stopPropagation();
   }
 };
 
 const closeFailAlert = () => {
-  closeFailAlertButton.addEventListener('click', removeFailAlert);
+  closeFailAlertButton.addEventListener('click', onFailModalClick);
   document.body.addEventListener('keydown', onFailAlertKeydown);
   document.addEventListener('click', (evt) => {
-    onClickWithinAlert(evt, 'error', removeFailAlert);
+    onWithinAlertClick(evt, 'error', onFailModalClick);
   });
 };
 

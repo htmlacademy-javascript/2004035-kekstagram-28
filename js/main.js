@@ -1,4 +1,4 @@
-import { createThumbnails } from './thumbnails.js';
+import { generateThumbnails } from './thumbnails.js';
 import { addPicturesClickListener } from './open-big-picture.js';
 import { setOpenFormListener } from './open-close-upload-form.js';
 import { getData } from './api.js';
@@ -10,7 +10,7 @@ const TIMEOUT_DELAY = 500;
 
 getData()
   .then((posts) => {
-    createThumbnails(posts);
+    generateThumbnails(posts);
     return posts;
   })
   .then((data) => {
