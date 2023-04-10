@@ -79,4 +79,4 @@ const setOpenFormListener = () => {
   onFormSubmit();
 };
 
-export { setOpenFormListener, onCloseFormClick };
+export { setOpenFormListener, closeForm };
